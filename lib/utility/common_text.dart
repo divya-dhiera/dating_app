@@ -1,0 +1,26 @@
+class AppText {
+  static const String appName = "Dating App";
+  static const String notEmptyFieldMessage = "Field must not be empty";
+  static const String validEmail = "Please enter valid email address";
+  static const String sure = "Are you sure you want\n to logout?";
+  static const String continues = "Continue";
+  static const String mobile = "My mobile";
+  static const String verify = "Please enter your valid phone number. We will send you a 4-digit code to verify your account.";
+  static const String again = "Send again";
+  static const String type = "Type the verification code \nwe’ve sent you";
+  static const String find = "Find Match";
+  static const String welcome = "Welcome";
+  static const String account = "Don't have a account? ";
+  static const String already = "Already have an account? ";
+  static const String register = "Register";
+  static const String matches = "Matches";
+  static const String login = "Login";
+  static const String name = "Name";
+  static const String age = "Age";
+  static const String gender = "Gender";
+  static const String phone = "Phone number";
+  static const String guest = "As a guest";
+  static const String interests = "We match you with people that have a large array of similar interests.";
+  static const String guestMode = "Welcome! \nYou're using guest mode.";
+  static const String create = "Create your profile by entering your information. This helps us serve you better.";
+}
