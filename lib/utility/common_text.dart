@@ -20,7 +20,13 @@ class AppText {
   static const String gender = "Gender";
   static const String phone = "Phone number";
   static const String guest = "As a guest";
-  static const String interests = "We match you with people that have a large array of similar interests.";
+  static const String similar = "We match you with people that have a large array of similar interests.";
   static const String guestMode = "Welcome! \nYou're using guest mode.";
   static const String create = "Create your profile by entering your information. This helps us serve you better.";
+  static const String msg = "Messages";
+  static const String search = "Search";
+  static const String send = "send a message...";
+  static const String location = "Location";
+  static const String about = "About";
+  static const String interests = "Interests";
 }

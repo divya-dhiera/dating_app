@@ -1,89 +1,200 @@
-import 'package:flutter/cupertino.dart';
+import 'package:datingapp/modual/home/view/bottom_navigation_screen.dart';
+import 'package:datingapp/utility/common_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'gemini_service.dart';
+import '../../../utility/common_text.dart';
+import '../../../utility/text_style.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final GeminiService gemini = GeminiService();
-  final TextEditingController controller = TextEditingController();
-  String reply = "";
-
-  List<ChatMessage> messages = [];
-
-  Future<void> sendMessage() async {
-    final text = controller.text.trim();
-    if (text.isEmpty) return;
-
-    controller.clear();
-
-    setState(() {
-      messages.add(ChatMessage(text, true));
-    });
-
-    final result = await gemini.askGemini(text);
-
-    setState(() {
-      messages.add(ChatMessage(result, false));
-    });
-  }
+  TextEditingController sendMsg = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Gemini Chat")),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.all(16),
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final msg = messages[index];
-                return Align(
-                  alignment: msg.isUser
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 5),
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: msg.isUser ? Colors.blue : Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(12),
+    return WillPopScope(
+      onWillPop: () async {
+        Get.to(() => BottomNavigationScreen(indexSelected: 1));
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: colorWhite,
+        appBar: AppBar(
+          title: Column(
+            children: [
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                            () => BottomNavigationScreen(indexSelected: 1),
+                          );
+                        },
+                        child: Icon(Icons.arrow_back_ios, size: 25),
+                      ),
+                      SizedBox(width: 10),
+                      SizedBox(
+                        height: 45,
+                        width: 45,
+                        child: ClipOval(
+                          child: Image.asset(
+                            "assets/images/image_2.jpeg",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Elizabeth",
+                            style: tsBlack16w500,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(width: 10),
+                          Text("Online", style: tsGrey14w400),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/images/ic_video.png",
+                        width: 35,
+                        height: 33,
+                      ),
+                      SizedBox(width: 15),
+                      Image.asset(
+                        "assets/images/ic_phone.png",
+                        width: 25,
+                        height: 25,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          surfaceTintColor: colorWhite,
+          automaticallyImplyLeading: false,
+          backgroundColor: colorWhite,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                physics: AlwaysScrollableScrollPhysics(),
+                itemCount: 100,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  print("index ====>$index");
+                  print("index 11 ====>${index + 1}");
+                  print("index 22 ====>${index - 1}");
+                  return Column(
+                    children: [
+                      Align(
+                        alignment: index % 3 == 0
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: index % 3 == 0
+                                ? Colors.grey.shade300
+                                : Colors.blue.shade50,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              topLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(
+                                index % 3 == 0 ? 0 : 10,
+                              ),
+                              bottomLeft: Radius.circular(
+                                index % 3 == 0 ? 10 : 0,
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            // "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                          ),
+                        ),
+                      ),
+                    ],
+                  ).paddingOnly(bottom: 15);
+                },
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    controller: sendMsg,
+                    cursorColor: colorBlack,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: colorBlack,
+                      fontSize: 18,
                     ),
-                    child: Text(
-                      msg.text,
-                      style: TextStyle(
-                        color: msg.isUser ? Colors.white : Colors.black,
+                    decoration: InputDecoration(
+                      hintText: AppText.send,
+                      filled: false,
+                      isDense: true,
+                      hintStyle: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: colorBlack,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 13,
+                        horizontal: 15,
+                      ),
+                      border: InputBorder.none,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: colorBlack.withOpacity(0.8),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: colorBlack.withOpacity(0.8),
+                        ),
                       ),
                     ),
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1,
+                    maxLines: null,
                   ),
-                );
-              },
+                ),
+                SizedBox(width: 15),
+                GestureDetector(
+                  onTap: () {},
+                  child: Image.asset(
+                    "assets/images/ic_send_2.png",
+                    height: 25,
+                    width: 25,
+                    color: colorBlack,
+                  ),
+                ),
+              ],
             ),
-          ),
-          Row(
-            children: [
-              Expanded(child: TextField(controller: controller)),
-              IconButton(icon: Icon(Icons.send), onPressed: sendMessage),
-            ],
-          ).paddingAll(15),
-        ],
-      ).paddingAll(15),
+          ],
+        ).paddingAll(15),
+      ),
     );
   }
-}
-
-class ChatMessage {
-  final String text;
-  final bool isUser;
-
-  ChatMessage(this.text, this.isUser);
 }

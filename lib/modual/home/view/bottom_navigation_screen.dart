@@ -2,7 +2,7 @@ import 'package:datingapp/modual/home/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utility/common_color.dart';
-import 'chat_screen.dart';
+import 'messages_screen.dart';
 import 'home_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -30,7 +30,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: colorPrimary,
+        backgroundColor: colorRed.withOpacity(0.8),
         selectedLabelStyle: TextStyle(
           color: colorBlack,
           fontSize: 11,
@@ -45,8 +45,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 width: 30,
                 height: 30,
                 color: selectedIndex == 0
-                    ? colorBottom
-                    : colorBlack.withOpacity(0.6),
+                    ? colorWhite.withOpacity(0.8)
+                    : colorBlack.withOpacity(0.8),
               ),
             ),
             label: 'Home',
@@ -59,8 +59,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 width: 30,
                 height: 30,
                 color: selectedIndex == 1
-                    ? colorBottom
-                    : colorBlack.withOpacity(0.6),
+                    ? colorWhite.withOpacity(0.8)
+                    : colorBlack.withOpacity(0.8),
               ),
             ),
             label: 'list',
@@ -73,8 +73,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 width: 28,
                 height: 28,
                 color: selectedIndex == 2
-                    ? colorBottom
-                    : colorBlack.withOpacity(0.6),
+                    ? colorWhite.withOpacity(0.8)
+                    : colorBlack.withOpacity(0.8),
               ),
             ),
             label: 'profile',
@@ -96,7 +96,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       case 0:
         return HomeScreen();
       case 1:
-        return ChatScreen();
+        return MessagesScreen();
       case 2:
         return ProfileScreen();
       case 3:

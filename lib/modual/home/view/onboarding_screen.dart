@@ -92,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               SizedBox(height: 10),
               Text(
-                AppText.interests,
+                AppText.similar,
                 style: tsBlack14w400,
                 textAlign: TextAlign.center,
               ),
