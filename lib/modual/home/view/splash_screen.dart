@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.offAll(() => BottomNavigationScreen());
       // } else {
       // Get.offAll(() => OnboardingScreen());
-      // }
+      // }\
     });
     super.initState();
   }

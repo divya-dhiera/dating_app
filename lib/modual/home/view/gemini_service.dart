@@ -6,7 +6,6 @@ class GeminiService {
     apiKey: "AIzaSyDYY3Zg6TG48wO67FQlqlFedYJBemlHLlw",
   );
 
-
   Future<String> askGemini(String prompt) async {
     final response = await model.generateContent([Content.text(prompt)]);
     return response.text ?? "No response";
