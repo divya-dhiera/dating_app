@@ -1,10 +1,10 @@
 import 'package:datingapp/modual/home/view/purchase_screen.dart';
-
 import 'package:datingapp/utility/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:video_player/video_player.dart';
+
 import '../../../utility/common_color.dart';
 import '../../../utility/text_style.dart';
 import 'gemini_chat_screen.dart';
@@ -20,13 +20,26 @@ class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   late Animation<Color?> _colorAnimation;
+
   VideoPlayerController? _videoPlayerController;
-  List<ProductDetails> _products = [];
+  int currentVideoIndex = 0;
+
+  final List<String> videoUrls = [
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+  ];
+
   final InAppPurchase _iap = InAppPurchase.instance;
+  List<ProductDetails> _products = [];
+  // bool isPurchased = false;
 
   @override
   void initState() {
     super.initState();
+
+    // isPurchased = true; // testing only
+
     _controller = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -36,17 +49,15 @@ class _HomeScreenState extends State<HomeScreen>
       begin: Colors.green.withOpacity(0.3),
       end: Colors.green.withOpacity(0.7),
     ).animate(_controller!);
+
     _initStoreInfo();
-    loadVideo(currentVideoIndex);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // if (isPurchased && mounted) {
+        loadVideo(currentVideoIndex);
+      // }
+    });
   }
-
-  int currentVideoIndex = 0;
-
-  final List<String> videoUrls = [
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-  ];
 
   Future<void> _initStoreInfo() async {
     final bool available = await _iap.isAvailable();
@@ -61,29 +72,89 @@ class _HomeScreenState extends State<HomeScreen>
     final ProductDetailsResponse response = await _iap.queryProductDetails(ids);
 
     if (response.error != null) {
-      print("Error loading products: ${response.error}");
+      debugPrint("IAP Error: ${response.error}");
       return;
     }
 
-    _products = response.productDetails;
-    print("Products Loaded: ${_products.length}");
-
-    setState(() {});
+    setState(() {
+      _products = response.productDetails;
+    });
   }
 
-  void loadVideo(int index) async {
-    _videoPlayerController?.dispose();
+  Future<void> loadVideo(int index) async {
+    // if (!isPurchased) return;
 
-    _videoPlayerController = VideoPlayerController.networkUrl(
+    await _videoPlayerController?.dispose();
+
+    final controller = VideoPlayerController.networkUrl(
       Uri.parse(videoUrls[index]),
     );
 
-    await _videoPlayerController?.initialize();
-    _videoPlayerController?.play();
-    _videoPlayerController?.setLooping(false);
+    await controller.initialize();
+    controller.play();
+    controller.setLooping(false);
 
-    setState(() {});
+    setState(() {
+      _videoPlayerController = controller;
+    });
   }
+
+  // Widget _buildVideoPlayer() {
+  //   if (_videoPlayerController == null ||
+  //       !_videoPlayerController!.value.isInitialized) {
+  //     return const SizedBox(
+  //       height: 300,
+  //       child: Center(child: CircularProgressIndicator()),
+  //     );
+  //   }
+  //
+  //   return AspectRatio(
+  //     aspectRatio: _videoPlayerController!.value.aspectRatio,
+  //     child: VideoPlayer(_videoPlayerController!),
+  //   );
+  // }
+  //
+  // Widget _buildPurchaseGate() {
+  //   return Container(
+  //     height: 300,
+  //     width: double.infinity,
+  //     padding: const EdgeInsets.all(20),
+  //     decoration: BoxDecoration(
+  //       color: Colors.grey.shade100,
+  //       borderRadius: BorderRadius.circular(15),
+  //     ),
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+  //         const Text(
+  //           "Purchase Required 🔒",
+  //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+  //         ),
+  //         const SizedBox(height: 10),
+  //         const Text(
+  //           "Complete your first purchase to unlock videos.",
+  //           textAlign: TextAlign.center,
+  //         ),
+  //         const SizedBox(height: 20),
+  //         ElevatedButton(
+  //           onPressed: () async {
+  //             final result = await Get.to(
+  //               () => PurchaseScreen(products: _products),
+  //             );
+  //
+  //             if (result == true) {
+  //               setState(() {
+  //                 isPurchased = true;
+  //               });
+  //               loadVideo(currentVideoIndex);
+  //             }
+  //           },
+  //           child: const Text("Buy Now"),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   void dispose() {
@@ -106,12 +177,12 @@ class _HomeScreenState extends State<HomeScreen>
               SizedBox(height: 2),
               Text("abcd".toUpperCase(), style: tsBlack20w500),
               SizedBox(height: 50),
-              _videoPlayerController!.value.isInitialized
+              _videoPlayerController?.value.isInitialized ?? true
                   ? SizedBox(
                       height: MediaQuery.of(context).size.width,
                       width: MediaQuery.of(context).size.width,
                       child: AspectRatio(
-                        aspectRatio: _videoPlayerController!.value.aspectRatio,
+                        aspectRatio: _videoPlayerController?.value.aspectRatio ?? 0,
                         child: VideoPlayer(_videoPlayerController!),
                       ),
                     )
@@ -144,9 +215,7 @@ class _HomeScreenState extends State<HomeScreen>
             bottom: 15,
             right: 15,
             child: GestureDetector(
-              onTap: () {
-                Get.to(() => GeminiChatScreen());
-              },
+              onTap: () => Get.to(() => GeminiChatScreen()),
               child: AnimatedBuilder(
                 animation: _colorAnimation,
                 builder: (context, child) {
@@ -161,19 +230,11 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                     child: Row(
                       children: [
-                        AnimatedOpacity(
-                          duration: Duration(milliseconds: 500),
-                          opacity: 1.0,
-                          child: AnimatedSlide(
-                            duration: Duration(milliseconds: 500),
-                            offset: Offset(0, -0.1),
-                            child: Text(
-                              "ChatAI",
-                              style: tsBlack16w500.copyWith(
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1.5, // modern style
-                              ),
-                            ),
+                        Text(
+                          "ChatAI",
+                          style: tsBlack16w500.copyWith(
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
                           ),
                         ),
                         const SizedBox(width: 8),
