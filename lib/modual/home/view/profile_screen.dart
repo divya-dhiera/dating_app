@@ -80,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       "assets/images/ic_send_2.png",
                       width: 25,
                       height: 25,
-                      color: colorRed,
+                      color: colorPrimary,
                     ),
                   ),
                 ],
@@ -128,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                     decoration: BoxDecoration(
-                      border: Border.all(color: colorRed),
+                      border: Border.all(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text("Travelling", style: tsBlack14w400),
@@ -136,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                     decoration: BoxDecoration(
-                      border: Border.all(color: colorRed),
+                      border: Border.all(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text("Books", style: tsBlack14w400),
@@ -144,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                     decoration: BoxDecoration(
-                      border: Border.all(color: colorRed),
+                      border: Border.all(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text("Dancing", style: tsBlack14w400),
@@ -152,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                     decoration: BoxDecoration(
-                      border: Border.all(color: colorRed),
+                      border: Border.all(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text("Modeling", style: tsBlack14w400),

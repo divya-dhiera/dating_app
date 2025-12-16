@@ -30,7 +30,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: colorRed.withOpacity(0.8),
+        backgroundColor: colorPrimary,
         selectedLabelStyle: TextStyle(
           color: colorBlack,
           fontSize: 11,
@@ -45,7 +45,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 width: 30,
                 height: 30,
                 color: selectedIndex == 0
-                    ? colorWhite.withOpacity(0.8)
+                    ? colorWhite
                     : colorBlack.withOpacity(0.8),
               ),
             ),
@@ -59,7 +59,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 width: 30,
                 height: 30,
                 color: selectedIndex == 1
-                    ? colorWhite.withOpacity(0.8)
+                    ? colorWhite
                     : colorBlack.withOpacity(0.8),
               ),
             ),
@@ -73,7 +73,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 width: 28,
                 height: 28,
                 color: selectedIndex == 2
-                    ? colorWhite.withOpacity(0.8)
+                    ? colorWhite
                     : colorBlack.withOpacity(0.8),
               ),
             ),

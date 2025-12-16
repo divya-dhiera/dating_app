@@ -50,18 +50,18 @@ class _GuestScreenState extends State<GuestScreen> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                   ),
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   disabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   contentPadding: EdgeInsets.symmetric(
@@ -87,18 +87,18 @@ class _GuestScreenState extends State<GuestScreen> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                   ),
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   disabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: colorRed),
+                    borderSide: const BorderSide(color: colorPrimary),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   contentPadding: EdgeInsets.symmetric(
@@ -112,7 +112,7 @@ class _GuestScreenState extends State<GuestScreen> {
               SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: colorRed),
+                  border: Border.all(color: colorPrimary),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -152,7 +152,7 @@ class _GuestScreenState extends State<GuestScreen> {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: colorRed,
+                    color: colorPrimary,
                   ),
                   child: Center(
                     child: Text(AppText.continues, style: tsWhite18w500),
@@ -168,7 +168,7 @@ class _GuestScreenState extends State<GuestScreen> {
                     children: [
                       TextSpan(
                         text: AppText.login,
-                        style: tsBlack16w500.copyWith(color: colorRed),
+                        style: tsBlack16w500.copyWith(color: colorPrimary),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Get.to(() => LoginScreen());

@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   final InAppPurchase _iap = InAppPurchase.instance;
   List<ProductDetails> _products = [];
+
   // bool isPurchased = false;
 
   @override
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // if (isPurchased && mounted) {
-        loadVideo(currentVideoIndex);
+      loadVideo(currentVideoIndex);
       // }
     });
   }
@@ -177,16 +178,19 @@ class _HomeScreenState extends State<HomeScreen>
               SizedBox(height: 2),
               Text("abcd".toUpperCase(), style: tsBlack20w500),
               SizedBox(height: 50),
-              _videoPlayerController?.value.isInitialized ?? true
-                  ? SizedBox(
-                      height: MediaQuery.of(context).size.width,
-                      width: MediaQuery.of(context).size.width,
-                      child: AspectRatio(
-                        aspectRatio: _videoPlayerController?.value.aspectRatio ?? 0,
+              SizedBox(
+                height: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width,
+                child:
+                    _videoPlayerController != null &&
+                        _videoPlayerController!.value.isInitialized
+                    ? AspectRatio(
+                        aspectRatio: _videoPlayerController!.value.aspectRatio,
                         child: VideoPlayer(_videoPlayerController!),
-                      ),
-                    )
-                  : Container(),
+                      )
+                    : const Center(child: CircularProgressIndicator()),
+              ),
+
               SizedBox(height: 50),
               GestureDetector(
                 onTap: () {
@@ -202,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen>
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: colorRed,
+                    color: colorPrimary,
                   ),
                   child: Center(
                     child: Text(AppText.find, style: tsWhite18w500),

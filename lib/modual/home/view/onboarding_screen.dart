@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               TextSpan(
                 text: AppText.register,
-                style: tsBlack16w500.copyWith(color: colorRed),
+                style: tsBlack16w500.copyWith(color: colorPrimary),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     Get.to(() => RegisterScreen());
@@ -88,7 +88,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               Text(
                 AppText.matches,
-                style: tsBlack24w600.copyWith(color: colorRed),
+                style: tsBlack24w600.copyWith(color: colorPrimary),
               ),
               SizedBox(height: 10),
               Text(
@@ -106,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: colorRed,
+                    color: colorPrimary,
                   ),
                   child: Center(
                     child: Text(AppText.login, style: tsWhite18w500),
@@ -123,7 +123,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   height: 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: colorRed,
+                    color: colorPrimary,
                   ),
                   child: Center(
                     child: Text(AppText.guest, style: tsWhite18w500),

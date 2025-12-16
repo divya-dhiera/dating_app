@@ -29,4 +29,10 @@ class AppText {
   static const String location = "Location";
   static const String about = "About";
   static const String interests = "Interests";
+  static const String short = "Type a short bio about yourself!";
+  static const String height = "Height";
+  static const String next = "Next";
+  static const String benefit = "Enjoy All the Benefits";
+  static const String aboutMe = "About Me";
+  static const String interest = "Interest";
 }

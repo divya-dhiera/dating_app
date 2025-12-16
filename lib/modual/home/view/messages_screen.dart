@@ -61,15 +61,15 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: colorRed, width: 1),
+                    borderSide: BorderSide(color: colorPrimary, width: 1),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: colorRed, width: 1),
+                    borderSide: BorderSide(color: colorPrimary, width: 1),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: colorRed, width: 1),
+                    borderSide: BorderSide(color: colorPrimary, width: 1),
                   ),
                 ),
                 // onChanged: _applySearchFilter,
@@ -144,7 +144,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                         width: 20,
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: colorRed,
+                                          color: colorPrimary,
                                         ),
                                         child: Center(
                                           child: Text(

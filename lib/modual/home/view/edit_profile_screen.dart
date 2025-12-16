@@ -142,7 +142,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           },
                           child: Center(
                             child: CircleAvatar(
-                              backgroundColor: colorRed,
+                              backgroundColor: colorPrimary,
                               child: Image.asset(
                                 "assets/images/ic_camera.png",
                                 width: 16,
@@ -171,18 +171,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                     ),
                     border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     disabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     contentPadding: EdgeInsets.symmetric(
@@ -208,18 +208,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                     ),
                     border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     disabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: colorRed),
+                      borderSide: const BorderSide(color: colorPrimary),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     contentPadding: EdgeInsets.symmetric(
@@ -233,7 +233,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: colorRed),
+                    border: Border.all(color: colorPrimary),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -276,7 +276,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: colorRed,
+                      color: colorPrimary,
                     ),
                     child: Center(
                       child: Text(AppText.continues, style: tsWhite18w500),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../utility/text_style.dart';
 import '../../authentication/view/login_screen.dart';
+import 'about_me_screen.dart';
 import 'bottom_navigation_screen.dart';
 import 'onboarding_screen.dart';
 
@@ -19,9 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       // if (getIsLogin()) {
-      Get.offAll(() => BottomNavigationScreen());
+      // Get.offAll(() => BottomNavigationScreen());
       // } else {
-      // Get.offAll(() => OnboardingScreen());
+      Get.offAll(() => AboutMeScreen());
       // }\
     });
     super.initState();
@@ -34,7 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         color: Colors.red.shade200,
-        child: Center(child: Text(AppText.appName, style: tsBlack24w600)),
+        child: Image(
+          image: AssetImage("assets/images/ic_splashscreen.png"),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

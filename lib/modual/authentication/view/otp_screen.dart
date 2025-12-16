@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../../utility/common_color.dart';
 import '../../../utility/text_style.dart';
+import '../../home/view/about_me_screen.dart';
 import '../../home/view/bottom_navigation_screen.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -26,10 +27,10 @@ class _OtpScreenState extends State<OtpScreen> {
   final FocusNode _focusNode1 = FocusNode();
   final FocusNode _focusNode2 = FocusNode();
   final FocusNode _focusNode3 = FocusNode();
-  Color _color = colorRed.withOpacity(0.5);
-  Color _color1 = colorRed.withOpacity(0.5);
-  Color _color2 = colorRed.withOpacity(0.5);
-  Color _color3 = colorRed.withOpacity(0.5);
+  Color _color = colorPrimary.withOpacity(0.5);
+  Color _color1 = colorPrimary.withOpacity(0.5);
+  Color _color2 = colorPrimary.withOpacity(0.5);
+  Color _color3 = colorPrimary.withOpacity(0.5);
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Timer? timer;
   int counter = 59;
@@ -43,7 +44,7 @@ class _OtpScreenState extends State<OtpScreen> {
         });
       } else {
         setState(() {
-          _color = colorRed.withOpacity(0.5);
+          _color = colorPrimary.withOpacity(0.5);
         });
       }
     });
@@ -54,7 +55,7 @@ class _OtpScreenState extends State<OtpScreen> {
         });
       } else {
         setState(() {
-          _color1 = colorRed.withOpacity(0.5);
+          _color1 = colorPrimary.withOpacity(0.5);
         });
       }
     });
@@ -65,7 +66,7 @@ class _OtpScreenState extends State<OtpScreen> {
         });
       } else {
         setState(() {
-          _color2 = colorRed.withOpacity(0.5);
+          _color2 = colorPrimary.withOpacity(0.5);
         });
       }
     });
@@ -76,7 +77,7 @@ class _OtpScreenState extends State<OtpScreen> {
         });
       } else {
         setState(() {
-          _color3 = colorRed.withOpacity(0.5);
+          _color3 = colorPrimary.withOpacity(0.5);
         });
       }
     });
@@ -332,11 +333,11 @@ class _OtpScreenState extends State<OtpScreen> {
               GestureDetector(
                 onTap: () {
                   Map<String, dynamic> params = {'phone': widget.number};
-                  kAuthController.resendOtp(params, () {});
+                  // kAuthController.resendOtp(params, () {});
                 },
                 child: Text(
                   AppText.again,
-                  style: tsBlack16w500.copyWith(color: colorRed),
+                  style: tsBlack16w500.copyWith(color: colorPrimary),
                 ),
               ),
             ],
@@ -369,7 +370,8 @@ class _OtpScreenState extends State<OtpScreen> {
               code4.value.text,
         };
         // kAuthController.verifyOtp(params, () {
-        Get.to(() => BottomNavigationScreen());
+        // Get.to(() => BottomNavigationScreen());
+        Get.to(() => AboutMeScreen());
         // });
         _focusNode3.unfocus();
       }

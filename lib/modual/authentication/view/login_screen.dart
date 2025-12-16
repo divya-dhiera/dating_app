@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(height: 50),
           Container(
             decoration: BoxDecoration(
-              border: Border.all(color: colorRed),
+              border: Border.all(color: colorPrimary),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: colorRed,
+                color: colorPrimary,
               ),
               child: Center(
                 child: Text(AppText.continues, style: tsWhite18w500),
