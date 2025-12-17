@@ -35,4 +35,10 @@ class AppText {
   static const String benefit = "Enjoy All the Benefits";
   static const String aboutMe = "About Me";
   static const String interest = "Interest";
+  static const String finish = "Finish";
+  static const String photos = "You can add photos to your profile.";
+  static const String identify = "This will help you friends be able to identify you easily";
+  static const String homePage = "Go to Homepage";
+  static const String better = "Tip: Profiles with 6 photos get better matches.";
+  static const String remove = "Remove Image";
 }

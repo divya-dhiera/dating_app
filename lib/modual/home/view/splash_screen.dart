@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../utility/text_style.dart';
 import '../../authentication/view/login_screen.dart';
 import 'about_me_screen.dart';
+import 'add_photos_screen.dart';
 import 'bottom_navigation_screen.dart';
 import 'onboarding_screen.dart';
 
@@ -20,9 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       // if (getIsLogin()) {
-      // Get.offAll(() => BottomNavigationScreen());
+      Get.offAll(() => OnboardingScreen());
       // } else {
-      Get.offAll(() => AboutMeScreen());
+      // Get.offAll(() => AboutMeScreen());
       // }\
     });
     super.initState();

@@ -1,4 +1,5 @@
 import 'package:datingapp/modual/home/view/purchase_screen.dart';
+import 'package:datingapp/modual/home/view/setting_screen.dart';
 import 'package:datingapp/utility/common_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -174,7 +175,22 @@ class _HomeScreenState extends State<HomeScreen>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40),
-              Text(AppText.welcome.toUpperCase(), style: tsBlack20w500),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(AppText.welcome.toUpperCase(), style: tsBlack20w500),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => SettingScreen());
+                    },
+                    child: Image.asset(
+                      "assets/images/ic_setting.png",
+                      height: 30,
+                      width: 20,
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: 2),
               Text("abcd".toUpperCase(), style: tsBlack20w500),
               SizedBox(height: 50),
@@ -198,6 +214,7 @@ class _HomeScreenState extends State<HomeScreen>
                     currentVideoIndex++;
                     loadVideo(currentVideoIndex);
                   } else {
+                    _videoPlayerController?.dispose();
                     Get.to(() => PurchaseScreen(products: _products));
                   }
                 },
