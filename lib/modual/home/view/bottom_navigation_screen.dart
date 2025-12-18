@@ -1,7 +1,8 @@
-import 'package:datingapp/modual/home/view/profile_screen.dart';
+import 'package:datingapp/modual/home/view/request_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utility/common_color.dart';
+import 'discover_screen.dart';
 import 'messages_screen.dart';
 import 'home_screen.dart';
 
@@ -30,7 +31,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: colorPrimary,
+        backgroundColor: bottomColor,
         selectedLabelStyle: TextStyle(
           color: colorBlack,
           fontSize: 11,
@@ -41,12 +42,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
-                "assets/images/ic_home.png",
-                width: 30,
-                height: 30,
-                color: selectedIndex == 0
-                    ? colorWhite
-                    : colorBlack.withOpacity(0.8),
+                selectedIndex == 0
+                    ? "assets/images/ic_selected_home.png"
+                    : "assets/images/ic_home.png",
+                width: 27,
+                height: 27,
               ),
             ),
             label: 'Home',
@@ -55,12 +55,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
-                "assets/images/ic_list.png",
-                width: 30,
-                height: 30,
-                color: selectedIndex == 1
-                    ? colorWhite
-                    : colorBlack.withOpacity(0.8),
+                selectedIndex == 1
+                    ? "assets/images/ic_selected_chat.png"
+                    : "assets/images/ic_chat.png",
+                width: 27,
+                height: 27,
               ),
             ),
             label: 'list',
@@ -69,12 +68,24 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
-                "assets/images/ic_profile.png",
+                selectedIndex == 2
+                    ? "assets/images/ic_selected_like.png"
+                    : "assets/images/ic_like.png",
+                width: 27,
+                height: 27,
+              ),
+            ),
+            label: 'like',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                selectedIndex == 3
+                    ? "assets/images/ic_selected_profile.png"
+                    : "assets/images/ic_profile.png",
                 width: 28,
                 height: 28,
-                color: selectedIndex == 2
-                    ? colorWhite
-                    : colorBlack.withOpacity(0.8),
               ),
             ),
             label: 'profile',
@@ -98,9 +109,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       case 1:
         return MessagesScreen();
       case 2:
-        return ProfileScreen();
+        return RequestScreen();
       case 3:
-        return HomeScreen();
+        return DiscoverScreen();
       default:
         return SizedBox.shrink();
     }

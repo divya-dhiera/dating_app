@@ -41,4 +41,16 @@ class AppText {
   static const String homePage = "Go to Homepage";
   static const String better = "Tip: Profiles with 6 photos get better matches.";
   static const String remove = "Remove Image";
+  static const String request = "Requests";
+  static const String poked = "Poked";
+  static const String accepted = "Accepted";
+  static const String noRequest = "No Request Yet";
+  static const String hooked = "Send your first request to get hooked up.";
+  static const String gem = "You have been poked by Gem";
+  static const String message = "Message";
+  static const String hurray = "Hurray!";
+  static const String discover = "Discover";
+  static const String vibe = "My today’s vibes is ...";
+  static const String check = "Check out your recommendation";
+  static const String based = "This is based on your profile";
 }

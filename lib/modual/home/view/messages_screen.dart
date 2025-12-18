@@ -1,3 +1,5 @@
+import 'package:datingapp/modual/home/view/profile_screen.dart';
+import 'package:datingapp/modual/home/view/setting_screen.dart';
 import 'package:datingapp/utility/common_color.dart';
 import 'package:datingapp/utility/common_text.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../utility/text_style.dart';
 import 'chat_screen.dart';
+import 'notification_screen.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({super.key});
@@ -20,15 +23,70 @@ class _MessagesScreenState extends State<MessagesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorWhite,
+      appBar: AppBar(
+        foregroundColor: colorPrimary,
+        automaticallyImplyLeading: false,
+        backgroundColor: colorPrimary,
+        surfaceTintColor: colorPrimary,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => ProfileScreen());
+                  },
+                  child: Image.asset(
+                    "assets/images/ic_placeholder.png",
+                    width: 30,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(AppText.msg.toUpperCase(), style: tsWhite18w500),
+              ],
+            ),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => SettingScreen());
+                  },
+                  child: Image.asset(
+                    "assets/images/ic_filter.png",
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
+                SizedBox(width: 20),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => NotificationScreen());
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: colorWhite,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Image.asset(
+                      "assets/images/ic_notification.png",
+                      height: 20,
+                      width: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 40),
-              Text(AppText.msg, style: tsBlack24w600),
-              SizedBox(height: 30),
               TextFormField(
                 controller: search,
                 style: TextStyle(
@@ -56,7 +114,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     ),
                   ),
                   contentPadding: EdgeInsets.symmetric(
-                    vertical: 13,
+                    vertical: 10,
                     horizontal: 10,
                   ),
                   border: OutlineInputBorder(
@@ -72,7 +130,6 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     borderSide: BorderSide(color: colorPrimary, width: 1),
                   ),
                 ),
-                // onChanged: _applySearchFilter,
                 keyboardType: TextInputType.text,
               ),
               SizedBox(height: 20),
