@@ -53,4 +53,16 @@ class AppText {
   static const String vibe = "My today’s vibes is ...";
   static const String check = "Check out your recommendation";
   static const String based = "This is based on your profile";
+  static const String gallery = "Gallery";
+  static const String see = "See all";
+  static const String share = "Share the profile";
+  static const String support = "Support";
+  static const String change = "Change Image";
+  static const String cancel = "Cancel";
+  static const String camera = "Camera";
+  static const String edit = "Edit Profile";
+  static const String complete = "Add a picture to complete your profile and you may even get more invites";
+  static const String amIn = "I’m interested in";
+  static const String update = "Update";
+  static const String notification = "Notifications";
 }

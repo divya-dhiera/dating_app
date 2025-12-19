@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
       // if (getIsLogin()) {
-      Get.offAll(() => BottomNavigationScreen());
+      Get.offAll(() => OnboardingScreen());
       // } else {
       // Get.offAll(() => AboutMeScreen());
       // }\

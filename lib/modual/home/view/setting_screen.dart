@@ -76,7 +76,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       "assets/images/ic_like.png",
                       width: 15,
                       height: 15,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.fill,color: colorPrimary,
                     ),
                   ),
                   SizedBox(width: 20),

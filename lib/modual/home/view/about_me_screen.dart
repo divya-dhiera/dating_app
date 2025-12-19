@@ -107,7 +107,7 @@ class _AboutMeScreenState extends State<AboutMeScreen> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text("I’m interested in", style: tsGrey18w500),
+                    Text(AppText.amIn, style: tsGrey18w500),
                     SizedBox(height: 15),
                     Container(
                       height: 80,

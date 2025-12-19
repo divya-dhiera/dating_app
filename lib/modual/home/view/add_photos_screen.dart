@@ -21,7 +21,6 @@ class _AddPhotosScreenState extends State<AddPhotosScreen> {
   final ImagePicker _editProfilePicker = ImagePicker();
   RxBool isEditFile = false.obs;
 
-  // Rx<XFile> editDocFile = XFile("").obs;
   List<XFile?> selectedImages = List<XFile?>.filled(6, null);
 
   XFile? editDoc;
@@ -157,7 +156,6 @@ class _AddPhotosScreenState extends State<AddPhotosScreen> {
         shrinkWrap: true,
         padding: EdgeInsets.all(15),
         children: [
-
           SizedBox(height: 40),
           Text(AppText.photos, style: tsBlack24w600),
           SizedBox(height: 5),
@@ -165,30 +163,96 @@ class _AddPhotosScreenState extends State<AddPhotosScreen> {
           GridView.builder(
             shrinkWrap: true,
             itemCount: 6,
+            physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 15,
-              mainAxisSpacing: 15,childAspectRatio: 1.2
+              mainAxisSpacing: 15,
+              childAspectRatio: 1.2,
             ),
             itemBuilder: (context, index) {
               final XFile? image = selectedImages[index];
-              return GestureDetector(
-                onTap: () => pickImage(context, index),
-                child: Container(
-                  color: Colors.grey.shade300,
-                  child: image == null
-                      ? Icon(Icons.add, size: 40)
-                      : GestureDetector(
-                          onTap: () {
-                            editImage(context, index);
-                          },
+              return Stack(
+                children: [
+                  GestureDetector(
+                    onTap: () => pickImage(context, index),
+                    child: Container(
+                      width: 180,
+                      height: 140,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.shade200,
+                      ),
+
+                      child: image == null
+                          ? SizedBox()
+                          : GestureDetector(
+                        onTap: () {
+                          editImage(context, index);
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
                           child: Image.file(
                             File(image.path),
                             width: double.infinity,
                             fit: BoxFit.cover,
                           ),
                         ),
-                ),
+                      ),
+                    ),
+                  ),
+                  image == null
+                      ? Positioned(
+                    bottom: 5,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () => pickImage(context, index),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: colorPrimary,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(8),
+                            topLeft: Radius.circular(8),
+                            bottomRight: Radius.circular(8),
+                          ),
+                        ),
+                        height: 20,
+                        width: 20,
+                        padding: EdgeInsets.all(5),
+                        child: Image.asset(
+                          "assets/images/ic_add.png",
+                          color: colorWhite,
+                        ),
+                      ),
+                    ),
+                  )
+                      : Positioned(
+                    bottom: 5,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        editImage(context, index);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: colorPrimary,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(8),
+                            topLeft: Radius.circular(8),
+                            bottomRight: Radius.circular(8),
+                          ),
+                        ),
+                        height: 25,
+                        width: 25,
+                        padding: EdgeInsets.all(5),
+                        child: Image.asset(
+                          "assets/images/ic_photo_edit.png",
+                          color: colorWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               );
             },
           ),

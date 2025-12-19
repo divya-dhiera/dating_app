@@ -37,9 +37,23 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   onTap: () {
                     Get.to(() => ProfileScreen());
                   },
-                  child: Image.asset(
-                    "assets/images/ic_placeholder.png",
-                    width: 30,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: colorWhite, width: 2),
+                    ),
+                    padding: EdgeInsets.all(2),
+                    child: Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(shape: BoxShape.circle),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/images/image_2.jpeg",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(width: 10),

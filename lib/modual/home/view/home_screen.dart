@@ -9,6 +9,7 @@ import '../../../utility/common_color.dart';
 import '../../../utility/text_style.dart';
 import 'gemini_chat_screen.dart';
 import 'notification_screen.dart';
+import 'view_user_profile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -44,8 +45,8 @@ class _HomeScreenState extends State<HomeScreen>
     )..repeat(reverse: true);
 
     _colorAnimation = ColorTween(
-      begin: Colors.green.withOpacity(0.3),
-      end: Colors.green.withOpacity(0.7),
+      begin: Color(0xff0B6623).withOpacity(0.7),
+      end: Color(0xff0B6623),
     ).animate(_controller!);
 
     // _initStoreInfo();
@@ -177,9 +178,23 @@ class _HomeScreenState extends State<HomeScreen>
                   onTap: () {
                     Get.to(() => ProfileScreen());
                   },
-                  child: Image.asset(
-                    "assets/images/ic_placeholder.png",
-                    width: 30,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: colorWhite, width: 2),
+                    ),
+                    padding: EdgeInsets.all(2),
+                    child: Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(shape: BoxShape.circle),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/images/image_2.jpeg",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(width: 10),
@@ -333,93 +348,104 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               SizedBox(height: 20),
               isSwipe == true
-                  ? Column(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.71,
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 15,
-                                  childAspectRatio: 2 / 3,
-                                ),
-                            itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                height: 250,
-                                width: 180,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Stack(
-                                  fit: StackFit.expand,
-                                  children: [
-                                    ClipRRect(
+                  ? Expanded(
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: GridView.builder(
+                              // physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 15,
+                                    childAspectRatio: 2 / 3,
+                                  ),
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => ViewUserProfile());
+                                  },
+                                  child: Container(
+                                    height: 250,
+                                    width: 180,
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      child: Image.asset(
-                                        "assets/images/image_1.jpeg",
-                                        fit: BoxFit.cover,
-                                      ),
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                            Colors.transparent,
-                                            colorBlack.withOpacity(0.6),
-                                          ],
+                                    child: Stack(
+                                      fit: StackFit.expand,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          child: Image.asset(
+                                            "assets/images/image_1.jpeg",
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
-                                      ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              10,
+                                            ),
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Colors.transparent,
+                                                colorBlack.withOpacity(0.6),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 38,
+                                                height: 38,
+                                                padding: EdgeInsets.all(12),
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: colorWhite,
+                                                ),
+                                                child: Image.asset(
+                                                  "assets/images/ic_cross.png",
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              SizedBox(width: 10),
+                                              Container(
+                                                width: 40,
+                                                height: 40,
+                                                padding: EdgeInsets.all(11),
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: colorPrimary,
+                                                ),
+                                                child: Image.asset(
+                                                  "assets/images/ic_orange_like.png",
+                                                  fit: BoxFit.fill,
+                                                  color: colorWhite,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ).paddingOnly(bottom: 15),
+                                      ],
                                     ),
-                                    Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 38,
-                                            height: 38,
-                                            padding: EdgeInsets.all(12),
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: colorWhite,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/images/ic_cross.png",
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          SizedBox(width: 10),
-                                          Container(
-                                            width: 40,
-                                            height: 40,
-                                            padding: EdgeInsets.all(11),
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: colorPrimary,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/images/ic_orange_like.png",
-                                              fit: BoxFit.fill,
-                                              color: colorWhite,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ).paddingOnly(bottom: 15),
-                                  ],
-                                ),
-                              );
-                            },
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   : Column(
                       children: [
@@ -441,114 +467,119 @@ class _HomeScreenState extends State<HomeScreen>
                                   percentThresholdX,
                                   percentThresholdY,
                                 ) {
-                                  return Transform.rotate(
-                                    angle: percentThresholdX * 0.15,
-                                    child: Stack(
-                                      fit: StackFit.expand,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                            15,
-                                          ),
-                                          child: Image.asset(
-                                            "assets/images/image_1.jpeg",
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(() => ViewUserProfile());
+                                    },
+                                    child: Transform.rotate(
+                                      angle: percentThresholdX * 0.15,
+                                      child: Stack(
+                                        fit: StackFit.expand,
+                                        children: [
+                                          ClipRRect(
                                             borderRadius: BorderRadius.circular(
                                               15,
                                             ),
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Colors.transparent,
-                                                Colors.black.withOpacity(0.3),
-                                                Colors.black.withOpacity(0.7),
-                                              ],
+                                            child: Image.asset(
+                                              "assets/images/image_1.jpeg",
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
-                                        ),
-                                        if (percentThresholdX > 0.15)
-                                          Positioned(
-                                            top: 40,
-                                            left: 20,
-                                            child: _swipeLabel(
-                                              "LIKE",
-                                              Colors.green,
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Colors.transparent,
+                                                  Colors.black.withOpacity(0.3),
+                                                  Colors.black.withOpacity(0.7),
+                                                ],
+                                              ),
                                             ),
                                           ),
+                                          if (percentThresholdX > 0.15)
+                                            Positioned(
+                                              top: 40,
+                                              left: 20,
+                                              child: _swipeLabel(
+                                                "LIKE",
+                                                Colors.green,
+                                              ),
+                                            ),
 
-                                        if (percentThresholdX < -0.15)
-                                          Positioned(
-                                            top: 40,
-                                            right: 20,
-                                            child: _swipeLabel(
-                                              "NOPE",
-                                              Colors.red,
+                                          if (percentThresholdX < -0.15)
+                                            Positioned(
+                                              top: 40,
+                                              right: 20,
+                                              child: _swipeLabel(
+                                                "NOPE",
+                                                Colors.red,
+                                              ),
                                             ),
-                                          ),
 
-                                        Positioned(
-                                          bottom: 10,
-                                          right: 10,
-                                          left: 10,
-                                          child: SizedBox(
-                                            width:
-                                                MediaQuery.of(
-                                                  context,
-                                                ).size.width -
-                                                40, // IMPORTANT
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Rohini Wate",
-                                                      style: tsWhite18w500
-                                                          .copyWith(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 19,
-                                                          ),
-                                                    ),
-                                                    Container(
-                                                      padding:
-                                                          const EdgeInsets.symmetric(
-                                                            horizontal: 10,
-                                                            vertical: 2,
-                                                          ),
-                                                      decoration: BoxDecoration(
-                                                        color: colorPrimary
-                                                            .withOpacity(0.8),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              8,
+                                          Positioned(
+                                            bottom: 10,
+                                            right: 10,
+                                            left: 10,
+                                            child: SizedBox(
+                                              width:
+                                                  MediaQuery.of(
+                                                    context,
+                                                  ).size.width -
+                                                  40, // IMPORTANT
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        "Rohini Wate",
+                                                        style: tsWhite18w500
+                                                            .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 19,
                                                             ),
                                                       ),
-                                                      child: Text(
-                                                        "21y",
-                                                        style: tsWhite12w400,
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets.symmetric(
+                                                              horizontal: 10,
+                                                              vertical: 2,
+                                                            ),
+                                                        decoration: BoxDecoration(
+                                                          color: colorPrimary
+                                                              .withOpacity(0.8),
+                                                          borderRadius:
+                                                              BorderRadius.circular(
+                                                                8,
+                                                              ),
+                                                        ),
+                                                        child: Text(
+                                                          "21y",
+                                                          style: tsWhite12w400,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Text(
-                                                  "10 miles away",
-                                                  style: tsWhite14w400,
-                                                ),
-                                              ],
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    "10 miles away",
+                                                    style: tsWhite14w400,
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
@@ -661,7 +692,7 @@ class _HomeScreenState extends State<HomeScreen>
                       ],
                     ),
             ],
-          ).paddingOnly(right: 15,top: 15, left: 15,),
+          ).paddingOnly(right: 15, top: 15, left: 15),
           Positioned(
             bottom: 15,
             right: 15,
@@ -691,8 +722,9 @@ class _HomeScreenState extends State<HomeScreen>
                         ),
                         child: Image.asset(
                           "assets/images/ic_chatBot.png",
-                          height: 25,
-                          width: 25,
+                          height: 30,
+                          width: 30,
+                          color: colorBlack,
                         ),
                       ),
                     ),
